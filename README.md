@@ -44,6 +44,7 @@ scoring happens when tiles of respective players are shifted from pattern lines 
 If none of the horizontal is finished we will go for next round, for next round again we will setup factory display by choosing random tiles from the bag and would start in same manner again.
 
 <br />
+
 # 3.	End of the game
 Game will be ended only if one player has completed at least one horizontal line. When the end of game comes, again the final marking of score will be done for each player which contain following stages.
 
