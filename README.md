@@ -62,7 +62,8 @@ Now program enters in infinite loop, program would exit from infinite loop only 
 Now wall tiling step would be performed by both the players simultaneously and results would be printed. One wall tiling results have been published, the program would check for the end of game condition and would print the score for both the players in both the cases of game is ended or not. If game is ended, program execution will come out of external loop and if game is not ended then program will repeat the execution for external loop representing next round of the game. 
 
 <br />
-# 5.	References
+
+# 5.References
 •	https://www.ultraboardgames.com/azul/game-rules.php
 •	https://www.dicetower.com/game-video/azul-review-zee-garcia
 
