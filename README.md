@@ -18,6 +18,7 @@ Game is divided in three steps:
 In factory offer stage, first task is to arrange tiles from factory and placing these tiles on to pattern lines of respective player. Tiles can be picked by two different ways.
 
 **1>**	Either you can select same color of all tiles from any of the factory display rest of the tiles would go to the center of the table.
+
 **2>** Or you can pick all the same color of tiles from the center of the table. As we already mentioned that this game is based on computer application and tiles are selected randomly automatically by machine itself hence there was no logic of having first player tile. 
 
 when all the places of a pattern line is filled, pattern line is considered to be completed and if you have picked extra number of tiles then these tiles would go to floor line. In upcoming round, you cannot place the tiles in a pattern line if the same color of tile is already places in corresponding wall. Whenever a tiles goes in floor line you would lose some score and the scoring respective to floor line is done in the manner shown below.
@@ -32,8 +33,11 @@ In wall tiling phase you would go from top to bottom and check every pattern lin
 scoring happens when tiles of respective players are shifted from pattern lines to wall tiles. So whenever a tile is shifted it will score few points based on given conditions:
 
 **1>**	If there is no adjacent tile of the newly shifted tile then it will score 1 point.
+
 **2>**	If there are n horizontal adjacent tiles with the newly shifted tile then it will score n+1 points.
+
 **3>**	If there are m vertical tiles adjacent to the newly shifted tile then it will score m+1 points.
+
 **4>**	If it has both n horizontal and m vertical tiles adjacent then it would score m+n-1 points.
 
 # 2.3. Step-3:Preparing for next round
@@ -42,14 +46,19 @@ If none of the horizontal is finished we will go for next round, for next round 
 <br />
 # 3.	End of the game
 Game will be ended only if one player has completed at least one horizontal line. When the end of game comes, again the final marking of score will be done for each player which contain following stages.
+
 **1>**	2 points are given on completing each number of horizontal wall.
+
 **2>**	7 points are given on completing each number of vertical line of wall.
+
 **3>**	10 points are given if you have placed all five colors in your wall.
+
 **4>**	Points are deducted according to the number of tiles in floor line.
 
 <br />
 
 # 4.	Analysis of Application
+
 Game starts by taking user input for two players. To design the mosaic of player, we would use two structure because it is more efficient to  keep the data organized. Among these two structure one structure represents pattern lines, floor tiles and total number of tiles added in for the particular player and second structure represent score of the player and wall tiles status. Choosing structure as data structure is a wise choice also because it makes game easier to save.
 
 Apart from using structure, we used linked list also which is used for the purpose of storing tiles in the center of table. Since it was not known initially that how many tiles can be there in center of table so linked list is most suitable data structure for such kind of scenarios. Whenever same color tiles are selected from the factory display, rest of the tiles are added to the center of the tile and for this application I have used push function which link a new node in to linked list. Whenever we want to select the tiles from the center of the table we would delete the matching color nodes of given number from the linked list for this purpose I have used the function of remove node. To print the tiles in the center of table, I have used the function called print center table which would iterate through the linked list and would print each of the nodes.
@@ -64,7 +73,9 @@ Now wall tiling step would be performed by both the players simultaneously and r
 <br />
 
 # 5.References
+
 •	https://www.ultraboardgames.com/azul/game-rules.php
+
 •	https://www.dicetower.com/game-video/azul-review-zee-garcia
 
 
