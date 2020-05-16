@@ -7,6 +7,7 @@ We have developed an application of Azul game which is based on C++ programming 
 So, first of all we will discuss how the game is played with respect to designed application.
 
 <br />
+
 # 2.	Game Rules
 
  First, you would have two boards, and 100 tiles. Among which tiles are of 5 different colors hence there would be 20 tiles of each color. For two player there would be 5 factory displays. Each factory display would contain randomly selected four tiles from the bag. Since this is not physical game rather it is built on computer application and also being played by two players only hence, chances of players would be alternating automatically by program.
