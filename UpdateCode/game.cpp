@@ -77,11 +77,9 @@ bool check_tiles_in_corresponding_wall(FD FD_t, int pattern_line, int active_pla
 /*___________drawing center of table___________*/
 void print_center_table(Node* head_center_table)
 {
-    Node* last;
     std::cout << "\n\n===center of the table===\n";
     while (head_center_table != NULL) {
         std::cout << head_center_table->data << " ";
-        last = head_center_table;
         head_center_table = head_center_table->next;
     }
     std::cout << "\n\n";
@@ -357,7 +355,6 @@ void clear_pattern_line(pattern_lines PL[], int pattern_lines, int player)
 }
 void add_tiles_to_bag(Bag_pack& bag_pack, pattern_lines PL[], int pattern_lines, int player, char tile_color)
 {
-    int i = 0;
     if (pattern_lines == 2)
     {
         bag_pack.transfer_tiles_to_bag(tile_color, 1);
@@ -573,18 +570,15 @@ void wall_tiling(Bag_pack& bag_pack, pattern_lines PL[], wall_tiles WL[], int pl
     }
 }
 
-bool newGame()
+void newGame()
 {
     Factory factory;
     Bag_pack bag_pack;
     Wall_tiles wall;
 
     //local variables
-    
-    int i, j;
     int end_game_track = 0;
     bool active_player = 0;
-    char tile;
     int pattern_line = 0;
     int placement_succes_flag = 0;
     bool tile_picking_success_flag = 0;
@@ -746,35 +740,34 @@ bool newGame()
 int main()
 {
    int input;
-
-    bool exit = false;
-
-    cout <<"\nWelcome to Azul!"<<endl;
-    cout <<"-------------------"<<endl;
-
-    while(!exit)
-    {
-        cout<<"Menu\n----"<<endl;
-        cout<< "1. New Game"<<endl;
-        cout<< "2. Load Game"<<endl;
-        cout<< "3. Credits (Show student information)"<<endl;
-        cout<< "4. Quit"<<endl;
-        cout<< ">";
-        cin>>input;
-
-        //Detect ^D.
-        if (cin.eof())
-        {
-            exit = true;
-            cout << "\nGoodbye!\n";
+   
+   bool exit = false;
+   
+   cout <<"\nWelcome to Azul!"<<endl;
+   cout <<"-------------------"<<endl;
+   
+   while(!exit)
+   {
+       cout<<"Menu\n----"<<endl;
+       cout<< "1. New Game"<<endl;
+       cout<< "2. Load Game"<<endl;
+       cout<< "3. Credits (Show student information)"<<endl;
+       cout<< "4. Quit"<<endl;
+       cout<< ">";
+       cin>>input;
+       
+       //Detect ^D.
+       if (cin.eof())
+       {
+           exit = true;
+           cout << "\nGoodbye!\n";
         }
-
         else if(input<5 && input>0)
         {
             // option 1 - start new game 
             if (input == 1)
             {
-                exit = newGame();
+                newGame();
                 cout<<"newGame()"<<endl;
             }
 

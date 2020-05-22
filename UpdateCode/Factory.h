@@ -93,7 +93,6 @@ public:
         {
             int i = 1;
             int no_of_tiles_temp = no_of_tiles;
-            Node* last;
             Node* temp = *head_center_table;
             while (temp != NULL)
             {
@@ -109,7 +108,7 @@ public:
                 }
                 else
                 {
-                    last = temp;
+                    // Node* last = temp;
                     temp = temp->next;
                     ++i;
                 }
@@ -151,14 +150,13 @@ public:
         if(factory_display == 5)
         {
             int temp = 0;
-            Node* last;
             while (node != NULL)
             {
                 if(node->data == FD_t.select_color)
                 {
                     ++temp;
                 }
-                last = node;
+                // Node* last = node;
                 node = node->next;
             }
             if(temp>=FD_t.select_no_of_tiles)
@@ -196,14 +194,12 @@ public:
         bool ret_val = 1;
         if(FD_t.select_factory_display == 6)
         {
-            Node* last;
             while (head_center_table != NULL)
             {
                 if(head_center_table->data == FD_t.select_color)
                 {
                     ++temp;
                 }
-                last = head_center_table;
                 head_center_table = head_center_table->next;
             }
             if(temp>FD_t.select_no_of_tiles)

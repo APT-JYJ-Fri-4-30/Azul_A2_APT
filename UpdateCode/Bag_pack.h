@@ -55,7 +55,6 @@ public:
     /*___________add floor line tiles to bag___________*/
     static void transfer_tiles_to_bag(char tile_color, int tile_count)
     {
-        int temp = tile_count;
         int i = 0, j = 0;
         int flag = 0;
         while(tile_count!=0)
