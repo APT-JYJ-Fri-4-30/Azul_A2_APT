@@ -649,9 +649,10 @@ bool newGame()
                 FD_t.select_color = 0; FD_t.select_factory_display = -1; FD_t.select_no_of_tiles = -1;
                 while ((FD_t.select_factory_display > 6 || FD_t.select_factory_display < 0) || (FD_t.select_no_of_tiles < 1) || (!((FD_t.select_color == 'B') || (FD_t.select_color == 'L') || (FD_t.select_color == 'U') || (FD_t.select_color == 'R') || (FD_t.select_color == 'Y'))))
                 {
-
-                    cout << "enter factory_display_number tiles_color number_of_tiles in same order:> ";
-                    cin >> FD_t.select_factory_display >> FD_t.select_color >> FD_t.select_no_of_tiles;
+                    cout << "enter between (1-5) to choose form factory display and enter 6 to choose from center\n";
+					cout << "enter factory display number then tile color then number of tiles in same color:\n";
+                    cout << " example for factory line 1.R U U Y  - Selecting two U's would look like (1 U 2)\n";
+					cin >> FD_t.select_factory_display >> FD_t.select_color >> FD_t.select_no_of_tiles;
                 }
 
                 tile_picking_success_flag = factory.Is_same_color_tile_left_over(FD_t, active_player, head_center_table);
