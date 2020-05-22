@@ -11,6 +11,10 @@
 #include "Wall_tiles.h"
 
 using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
+
 /*___________check tiles in corresponding wall___________*/
 bool check_tiles_in_corresponding_wall(FD FD_t, int pattern_line, int active_player, wall_tiles WL[])
 {
@@ -113,7 +117,7 @@ void draw_mosiac(pattern_lines PL[], wall_tiles WL[], int p)
     printf("|| ");
     printf("%c %c %c %c %c \n", WL[p].tile_line5[0], WL[p].tile_line5[1], WL[p].tile_line5[2], WL[p].tile_line5[3], WL[p].tile_line5[4]);
 
-    cout << "floor line" << ": ";
+    cout << "broken" << ": ";
     printf("%c %c %c %c %c %c %c\n", PL[p].floor_line[0], PL[p].floor_line[1], PL[p].floor_line[2], PL[p].floor_line[3], PL[p].floor_line[4], PL[p].floor_line[5], PL[p].floor_line[6]);
 }
 
@@ -569,13 +573,14 @@ void wall_tiling(Bag_pack& bag_pack, pattern_lines PL[], wall_tiles WL[], int pl
     }
 }
 
-
-int main()
+bool newGame()
 {
     Factory factory;
     Bag_pack bag_pack;
     Wall_tiles wall;
-    /*___________local variables___________*/
+
+    //local variables
+    
     int i, j;
     int end_game_track = 0;
     bool active_player = 0;
@@ -587,14 +592,14 @@ int main()
     char player_1[15];
     char player_2[15];
 
-    /*___________Enter player details___________*/
-    cout << "Enter player-1 name:";
+    //Enter player details
+    cout << "Please enter player 1 name:";
     cin >> player_1;
 
-    cout << "Enter player-2 name:";
+    cout << "Please enter player 2 name:";
     cin >> player_2;
 
-    /*___________Creating empty mosiac for 2 players___________*/
+    //Creating empty mosiac for 2 players
     pattern_lines PL[2] =
     {
             {{' ',' ',' ',' ','.'},{' ',' ',' ','.','.'},{' ',' ','.','.','.'},{' ','.','.','.','.'},{'.','.','.','.','.'},{'\0'},0},
@@ -607,37 +612,36 @@ int main()
     };
 
 
-    /*___________filled the bag with 5 different colors of tiles with 20 tiles each color___________*/
+    //filled the bag with 5 different colors of tiles with 20 tiles each color
     bag_pack.fill_tiles_bag();
 
-    /*___________set the factory by randomly selecting 20 tiles from bag and placing 4 tiles on each factory display___________*/
+    //set the factory by randomly selecting 20 tiles from bag and placing 4 tiles on each factory display
     factory.fill_factory_display();
 
-    /*___________start the game___________*/
+    //start the game
     cout << "===Start the game===";
 
-    /*___________printing bag tiles___________*/
+    //printing bag tiles
     bag_pack.print_bag();
 
     while (1)
     {
         while (1)
         {
-            cout << "\n==========================================================================";
             cout << "\n====================Turn for player:" << (active_player + 1) << "====================";
 
-            /*___________print factory display___________*/
+            //print factory display
             factory.print_factory_display(active_player);
 
-            /*___________drawing mosiac for player___________*/
+            //drawing mosiac for player
             cout << "\n\n===Mosiac for Player-" << (active_player + 1) << "===\n";
             draw_mosiac(PL, WL, active_player);
 
-            /*___________drawing center of table___________*/
+            //drawing center of table
             print_center_table(head_center_table);
 
 
-            /*___________Select Factory Display___________*/
+            //Select Factory Display
             tile_picking_success_flag = 0;
             FD FD_t = { -1, -1, 0 };
             while (tile_picking_success_flag != 1)
@@ -645,14 +649,14 @@ int main()
                 FD_t.select_color = 0; FD_t.select_factory_display = -1; FD_t.select_no_of_tiles = -1;
                 while ((FD_t.select_factory_display > 6 || FD_t.select_factory_display < 0) || (FD_t.select_no_of_tiles < 1) || (!((FD_t.select_color == 'B') || (FD_t.select_color == 'L') || (FD_t.select_color == 'U') || (FD_t.select_color == 'R') || (FD_t.select_color == 'Y'))))
                 {
-                    cout << "enter between (1-5) to choose form factory display and enter 6 to choose from center\n";
-                    cout << "enter factory_display_number tiles_color number_of_tiles in same order:";
+
+                    cout << "enter factory_display_number tiles_color number_of_tiles in same order:> ";
                     cin >> FD_t.select_factory_display >> FD_t.select_color >> FD_t.select_no_of_tiles;
                 }
 
                 tile_picking_success_flag = factory.Is_same_color_tile_left_over(FD_t, active_player, head_center_table);
 
-                /*___________picking tiles from factory display___________*/
+                //picking tiles from factory display
 
                 if (tile_picking_success_flag == 1)
                     tile_picking_success_flag = factory.picking_tiles_from_factory_display(FD_t, active_player, &head_center_table);
@@ -660,7 +664,7 @@ int main()
             cout << "tiles successfully picked\n";
 
 
-            /*___________placing tiles in pattern lines___________*/
+            //placing tiles in pattern lines
             pattern_line = 0;
             placement_succes_flag = 0;
             while (placement_succes_flag != 1)
@@ -681,7 +685,7 @@ int main()
             }
             cout << "tiles successfully placed\n";
 
-            /*___________alterning chances of player___________*/
+            //alterning chances of player
             active_player = !active_player;
 
             //if tiles in center and factory display are finished goto wall tiling stage
@@ -696,26 +700,26 @@ int main()
         cout << "\n==========================Results of wall tiling==========================";
 
         FD FD_t = { -1, -1, 0 };
-        /*___________wall tiling by player-1___________*/
+        //wall tiling by player-1
         wall_tiling(bag_pack, PL, WL, 0, FD_t);
 
-        /*___________drawing mosiac for player-1___________*/
+        //drawing mosiac for player-1
         cout << "\n\n===Mosiac for Player-1" << "===\n";
         draw_mosiac(PL, WL, 0);
 
-        /*___________wall tiling by player-2___________*/
+        //wall tiling by player-2
         wall_tiling(bag_pack, PL, WL, 1, FD_t);
 
-        /*___________drawing mosiac for player-2___________*/
+        //drawing mosiac for player-2
         cout << "\n\n===Mosiac for Player-2" << "===\n";
         draw_mosiac(PL, WL, 1);
 
-        /*___________cheking game is over for player-1___________*/
+        //cheking game is over for player-1
         if (1 == wall.Is_game_ended(PL, WL, 0))
         {
             end_game_track = 1;
         }
-        /*___________cheking game is over for player-2___________*/
+        // game is over for player-2
         if (1 == wall.Is_game_ended(PL, WL, 1))
         {
             end_game_track = 1;
@@ -727,13 +731,79 @@ int main()
             break;
         }
 
-        /*___________filling factory display___________*/
+        //filling factory display
         factory.fill_factory_display();
 
-        /*___________printing bag tiles___________*/
+        //printing bag tiles
         bag_pack.print_bag();
 
-        /*__________check end game___________*/
+        //check end game
 
+    }
+}
+
+int main()
+{
+   int input;
+
+    bool exit = false;
+
+    cout <<"\nWelcome to Azul!"<<endl;
+    cout <<"-------------------"<<endl;
+
+    while(!exit)
+    {
+        cout<<"Menu\n----"<<endl;
+        cout<< "1. New Game"<<endl;
+        cout<< "2. Load Game"<<endl;
+        cout<< "3. Credits (Show student information)"<<endl;
+        cout<< "4. Quit"<<endl;
+        cout<< ">";
+        cin>>input;
+
+        //Detect ^D.
+        if (cin.eof())
+        {
+            exit = true;
+            cout << "\nGoodbye!\n";
+        }
+
+        else if(input<5 && input>0)
+        {
+            // option 1 - start new game 
+            if (input == 1)
+            {
+                exit = newGame();
+                cout<<"newGame()"<<endl;
+            }
+
+            // option 2 load game not functioning
+            if (input == 2)
+            {
+                //exit = loadGame();
+                cout<<"loadGame()"<<endl;
+            }
+
+            // option 3 - show sudent info
+            if (input == 3)
+            {
+                cout
+                << "\nName: Jessica Michelle"
+                << "\nStudent ID: s3763653"
+                << "\nEmail: s3763653@student.rmit.edu.au\n"
+                << "\nName: Junyu Li"
+                << "\nStudent ID: s3706335"
+                << "\nEmail: s3706335@student.rmit.edu.au\n"
+                << "\nName: Yvonne Chen"
+                << "\nStudent ID: s3657984"
+                << "\nEmail: s3657984@student.rmit.edu.au\n";
+            }
+
+            else
+            {
+                exit = true;
+                cout << "\nGoodbye!\n";
+            }
+        }
     }
 }
